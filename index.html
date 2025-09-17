@@ -27,147 +27,39 @@
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
     /* ---------- HEADER (mantido igual às demais páginas) ---------- */
-    /* ---------- HEADER UNIFICADO ---------- */
-header {
-    background: linear-gradient(90deg, var(--dark-blue), var(--medium-blue));
-    padding: 0 20px;
-    height: 72px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header-logo {
-    display: flex;
-    align-items: center;
-    flex: 0 0 auto;
-    height: 100%;
-    padding-right: 12px;
-}
-
-.header-logo img {
-    max-height: 64px;
-    max-width: 220px;
-    width: auto;
-    height: auto;
-    display: block;
-    object-fit: contain;
-}
-
-.header-nav {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-}
-
-.header-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    white-space: nowrap; /* garante menu em linha */
-    overflow: visible;   /* permite exibir dropdown */
-}
-
-.header-nav a,
-.header-nav span {
-    text-decoration: none;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    transition: color 0.3s, transform 0.2s;
-}
-
-.header-nav a:hover,
-.header-nav span:hover {
-    color: var(--light-blue);
-    transform: scale(1.05);
-}
-
-.header-nav li {
-    position: relative;
-}
-
-.header-nav li .dropdown-menu {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    top: 100%;
-    left: -15px; /* igual na principal */
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 10px 0;
-    min-width: 220px;
-    z-index: 1000;
-    border-radius: 5px;
-    text-align: left;
-    transition: visibility 0s, opacity 0.3s linear;
-    display: block;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 8px 20px;
-    font-weight: 400;
-    color: var(--text-color);
-    white-space: nowrap;
-}
-
-.dropdown-menu a:hover {
-    color: var(--medium-blue);
-    background-color: #f0f8fa;
-}
-
-.header-nav li:hover .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-}
-
-.header-cta {
-    flex: 0 0 auto;
-    margin-left: 12px;
-}
-
-.header-cta a {
-    background-color: white;
-    color: var(--dark-blue);
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-.header-cta a:hover {
-    background-color: var(--light-blue);
-    color: var(--dark-blue);
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    header {
-        height: 60px;
-        padding: 0 12px;
-        justify-content: center;
-    }
-    .header-logo img {
-        max-height: 46px;
-        max-width: 160px;
-    }
-    .header-nav ul {
-        display: none;
-    }
-    .header-cta {
-        display: none;
-    }
-}
+   <header>
+  <div class="header-logo">
+    <a href="/site/">
+      <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
+    </a>
+  </div>
+  <nav class="header-nav">
+    <ul>
+      <li>
+        <span>Serviços</span>
+        <ul class="dropdown-menu">
+          <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
+          <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
+          <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
+          <li><a href="https://apinformacao.net.br/site/lgpd/">Compliance e LGPD</a></li>
+        </ul>
+      </li>
+      <li>
+        <span>Setores</span>
+        <ul class="dropdown-menu">
+          <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
+          <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Imobiliário</a></li>
+          <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
+        </ul>
+      </li>
+      <li><a href="https://apinformacao.net.br/site/planos/">Planos</a></li>
+      <li><a href="https://apinformacao.net.br/site/sobre-nos/">Sobre Nós</a></li>
+    </ul>
+  </nav>
+  <div class="header-cta">
+    <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Enriquecimento%20de%20Dados%20na%20APinformação.">Fale Conosco</a>
+  </div>
+</header>
 
 
     /* ---------- Hero ---------- */
