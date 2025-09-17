@@ -26,41 +26,101 @@
     }
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    /* ---------- HEADER (mantido igual às demais páginas) ---------- */
-   <header>
-  <div class="header-logo">
-    <a href="/site/">
-      <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
-    </a>
-  </div>
-  <nav class="header-nav">
-    <ul>
-      <li>
-        <span>Serviços</span>
-        <ul class="dropdown-menu">
-          <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
-          <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
-          <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
-          <li><a href="https://apinformacao.net.br/site/lgpd/">Compliance e LGPD</a></li>
-        </ul>
-      </li>
-      <li>
-        <span>Setores</span>
-        <ul class="dropdown-menu">
-          <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
-          <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Imobiliário</a></li>
-          <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
-        </ul>
-      </li>
-      <li><a href="https://apinformacao.net.br/site/planos/">Planos</a></li>
-      <li><a href="https://apinformacao.net.br/site/sobre-nos/">Sobre Nós</a></li>
-    </ul>
-  </nav>
-  <div class="header-cta">
-    <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Enriquecimento%20de%20Dados%20na%20APinformação.">Fale Conosco</a>
-  </div>
-</header>
+    /* ---------- HEADER (unificado / igual às outras páginas) ---------- */
+    header {
+        background: linear-gradient(90deg, var(--dark-blue), var(--medium-blue));
+        padding: 0 20px;
+        height: 72px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    .header-logo { display: flex; align-items: center; flex: 0 0 auto; height: 100%; padding-right: 12px; }
+    .header-logo img { max-height: 64px; max-width: 220px; width: auto; height: auto; display: block; object-fit: contain; }
 
+    /* importante: usar > ul para atingir somente o UL do topo e não os dropdowns */
+    .header-nav { flex: 1 1 auto; display: flex; justify-content: center; }
+    .header-nav > ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        white-space: nowrap; /* evita quebra no menu principal */
+    }
+
+    .header-nav a, .header-nav span {
+        text-decoration: none;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        transition: color 0.3s, transform 0.2s;
+    }
+    .header-nav a:hover, .header-nav span:hover { color: var(--light-blue); transform: scale(1.05); }
+    .header-nav li { position: relative; }
+
+    /* dropdown (ul interno) */
+    .dropdown-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 100%;
+      left: -15px; /* alinhamento conforme padrão */
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 6px 0;
+      min-width: 220px;
+      z-index: 1000;
+      border-radius: 5px;
+      text-align: left;
+      transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+    }
+    .dropdown-menu li { display: block; } /* força vertical */
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 20px;
+      font-weight: 400;
+      color: var(--text-color);
+      white-space: nowrap;
+    }
+    .dropdown-menu a:hover { color: var(--medium-blue); background-color: #f0f8fa; }
+
+    /* mostrar dropdown no hover do LI pai */
+    .header-nav > ul > li:hover > .dropdown-menu {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    .header-cta { flex: 0 0 auto; margin-left: 12px; }
+    .header-cta a {
+      background-color: white;
+      color: var(--dark-blue);
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .header-cta a:hover { background-color: var(--light-blue); color: var(--dark-blue); }
+
+    @media (max-width: 768px) {
+      header { height: 60px; padding: 0 12px; }
+      .header-logo img { max-height: 46px; max-width: 160px; }
+      .header-nav > ul { display: none; } /* mantém comportamento mobile */
+      .header-cta { display: none; }
+    }
 
     /* ---------- Hero ---------- */
     .hero{background: linear-gradient(180deg, rgba(38,147,171,0.06), rgba(224,242,247,0.4)); padding:56px 20px; text-align:center; color:var(--dark-blue)}
@@ -96,63 +156,64 @@
     .note{margin-top:18px;background:linear-gradient(180deg,#f8fcff,#fff);padding:16px;border-radius:8px;border:1px solid #e8f4f7;color:var(--muted)}
     footer{background:var(--dark-blue);color:#fff;padding:20px;text-align:center;margin-top:22px}
     footer a{color:var(--light-blue);text-decoration:none}
-
   </style>
 </head>
 <body>
 
-  <!-- Header (mantido idêntico às outras páginas) -->
+  <!-- ---------- Header (idêntico ao modelo correto) ---------- -->
   <header>
     <div class="header-logo">
-      <a href="/site/">
-        <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
-      </a>
+        <a href="/site/">
+            <img src="https://raw.githubusercontent.com/sacapinformacao/clientes/36d5eab5b6cf22741d66c95eae5857a60141dee2/logo%20novo%20branco%20copiar.png" alt="AP Informação Logo">
+        </a>
     </div>
+
     <nav class="header-nav" aria-label="Navegação principal">
       <ul>
-  <li>
-    <span>Serviços</span>
-    <div class="dropdown-menu" role="menu" aria-hidden="true">
-      <a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
-                        <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
-                        <li><a href="https://apinformacao.net.br/site/lgpd/">Compliance e LGPD</a></li>
-    </div>
-  </li>
+        <li>
+          <span>Serviços</span>
+          <ul class="dropdown-menu" aria-hidden="true">
+            <li><a href="https://sacapinformacao.github.io/BackGroundCheck/">Background Check</a></li>
+            <li><a href="https://sacapinformacao.github.io/Veiculos/">Análise de Veículos</a></li>
+            <li><a href="https://sacapinformacao.github.io/Enriquecimento/">Enriquecimento de Dados</a></li>
+            <li><a href="https://apinformacao.net.br/site/lgpd/">Compliance e LGPD</a></li>
+          </ul>
+        </li>
 
-  <li>
-    <span>Setores</span>
-    <div class="dropdown-menu" role="menu" aria-hidden="true">
-      <a href="https://apinformacao.net.br/site/juridico/">Jurídico</a>
-      <a href="https://apinformacao.net.br/site/imobiliario/">Imobiliário</a>
-      <a href="https://apinformacao.net.br/site/industrial/">Industrial</a>
-    </div>
-  </li>
+        <li>
+          <span>Setores</span>
+          <ul class="dropdown-menu" aria-hidden="true">
+            <li><a href="https://sacapinformacao.github.io/Landpage-Advocacia/">Jurídico</a></li>
+            <li><a href="https://sacapinformacao.github.io/lanpage-Im-veis/">Imobiliário</a></li>
+            <li><a href="https://sacapinformacao.github.io/Landpage-Industrias/">Industrial</a></li>
+          </ul>
+        </li>
 
-  <li><a href="https://apinformacao.net.br/site/planos/">Planos</a></li>
-  <li><a href="https://apinformacao.net.br/site/sobre-nos/">Sobre Nós</a></li>
-</ul>
-
+        <li><a href="https://apinformacao.net.br/site/planos/">Planos</a></li>
+        <li><a href="https://apinformacao.net.br/site/sobre-nos/">Sobre Nós</a></li>
+      </ul>
     </nav>
 
     <div class="header-cta">
-      <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Enriquecimento%20de%20Dados%20na%20APinformação.">Fale Conosco</a>
+      <!-- link do WhatsApp DO CABEÇALHO: mensagem genérica -->
+      <a href="https://api.whatsapp.com/send?phone=5511948962888&text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20de%20an%C3%A1lise%20de%20risco%20da%20AP%20Informa%C3%A7%C3%A3o." target="_blank">Fale Conosco</a>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- ---------- Hero ---------- -->
   <section class="hero">
     <div class="container">
       <div class="kicker">Enriquecimento em Escala</div>
       <h1>Enriqueça os seus processos. Com sua base de dados atualizada.</h1>
       <p class="lead">O enriquecimento de dados é a solução ideal para atualizar em grande escala informações cadastrais de empresas, pessoas e veículos, garantindo precisão contínua na sua base. Indicado para escritórios jurídicos, todo o setor imobiliário (incorporadoras, construtoras, imobiliárias e holdings) e indústrias que dependem de dados confiáveis.</p>
 
-      <!-- linha de foco nos setores (leve e não intrusiva) -->
       <p style="margin-top:10px;font-weight:700;color:var(--medium-blue);">Atendemos: Escritórios Jurídicos • Setor Imobiliário completo • Indústrias</p>
 
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Acessei%20a%20página%20de%20Enriquecimento%20de%20Dados%20e%20quero%20conhecer%20a%20solução." target="_blank">Saiba mais / Solicitar</a>
-                  </div>
+        <!-- link do WhatsApp DO HERO (específico para Enriquecimento) -->
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=5511948962888&text=Ol%C3%A1!%20Acessei%20a%20p%C3%A1gina%20de%20Enriquecimento%20de%20Dados%20e%20quero%20conhecer%20a%20solu%C3%A7%C3%A3o." target="_blank">Saiba mais / Solicitar</a>
+      </div>
+    </div>
   </section>
 
   <!-- O que é / principais benefícios -->
@@ -170,7 +231,6 @@
       <article class="card" aria-labelledby="validacao-title">
         <div class="feature-row">
           <div class="feature-ico" style="background:#e8f5ff">
-            <!-- ícone: checklist / validação -->
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#2693ab" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
           </div>
           <div>
@@ -183,7 +243,6 @@
       <article class="card" aria-labelledby="contatos-title">
         <div class="feature-row">
           <div class="feature-ico" style="background:#fff7e6">
-            <!-- ícone: telefone / contato -->
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#f57c00" d="M6.6 10.2a15.05 15.05 0 006.2 6.2l1.6-1.6a1 1 0 011.1-.2c1.2.5 2.6.8 4 .8a1 1 0 011 1V20a1 1 0 01-1 1C9.9 21 3 14.1 3 6a1 1 0 011-1h2.4a1 1 0 011 1c0 1.4.3 2.8.8 4 .2.5 0 1.1-.6 1.2L6.6 10.2z"/></svg>
           </div>
           <div>
@@ -196,7 +255,6 @@
       <article class="card" aria-labelledby="socio-title">
         <div class="feature-row">
           <div class="feature-ico" style="background:#fff0f6">
-            <!-- ícone: perfil socioeconômico -->
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#c2185b" d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4.4 0-8 2.2-8 4v2h16v-2c0-1.8-3.6-4-8-4z"/></svg>
           </div>
           <div>
@@ -206,10 +264,9 @@
         </div>
       </article>
 
-        <article class="card" aria-labelledby="detec-title">
+      <article class="card" aria-labelledby="detec-title">
         <div class="feature-row">
           <div class="feature-ico" style="background:#eef7ff">
-            <!-- ícone: duplicidade / limpeza -->
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#1976d2" d="M3 6h18v2H3V6zm0 5h12v2H3v-2zm0 5h8v2H3v-2z"/></svg>
           </div>
           <div>
@@ -269,7 +326,8 @@
     <h2>Transforme dados em decisões inteligentes</h2>
     <p class="lead">Com o Enriquecimento de Dados da APinformação, sua base vira um ativo estratégico — mais confiável, acionável e pronta para sustentar operações jurídicas, imobiliárias e industriais.</p>
     <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap">
-      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=5511948962888&text=Olá!%20Tenho%20interesse%20no%20Enriquecimento%20de%20Dados%20(cheguei%20pela%20página%20de%20Enriquecimento)." target="_blank">Fale com um Especialista</a>
+      <!-- link do WhatsApp DO CTA final (mensagem específica) -->
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=5511948962888&text=Ol%C3%A1!%20Tenho%20interesse%20no%20Enriquecimento%20de%20Dados%20(cheguei%20pela%20p%C3%A1gina%20de%20Enriquecimento)." target="_blank">Fale com um Especialista</a>
       <a class="btn btn-outline" href="mailto:contato@apinformacao.net.br" style="background:#fff;color:var(--medium-blue);border:1px solid #e6f6fa">Enviar e-mail</a>
     </div>
   </section>
